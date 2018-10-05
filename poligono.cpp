@@ -1,24 +1,25 @@
 #include "poligono.h"
 #include <iostream>
 #include <cmath>
+#define MAX_TAM 100
 
 using namespace std;
 
- void Poligono::setVertices(int nVertices)
-{
-    nVertices = 0;
-}
+/*Poligono::Poligono(){
+    nVertices=0;
+}*/
 
 void Poligono::setVetPol(int i, float x, float y){
 
-    for(i=0; i<nVertices; i++){
-        cout << "Coordenada x do vertice " << i << ": ";
-        cin >>  x;
-                vertice[i].setX(x);
-        cout << "Coordenada y do vertice " << i << ": ";
-        cin >>  y;
-                vertice[i].setY(y);
+    if(nVertices >= 100){
+        cout << "Quantidade maxima de vertices atingida\n";
+        exit(0);
     }
+
+    nVertices++;
+
+    vertice[nVertices-1].setX(x);
+    vertice[nVertices-1].setY(y);
 }
 
 int Poligono::numVetPol(void){
@@ -44,7 +45,7 @@ float Poligono::calcAreaPol(void){
         soma2 += vertice[i].getY()*vertice[i-1].getX();
     }
 
-    return (soma1-soma2)/2;
+    return (soma2-soma1)/2;
 }
 
 void Poligono::transladaPol(float a, float b){
@@ -56,7 +57,20 @@ void Poligono::transladaPol(float a, float b){
 }
 
 void Poligono::rotacionarPol(float angulo, float a, float b){
-    //não sei fazer
+    angulo*=(M_PI/180.0);
+    for(int j=0; j<nVertices;j++){
+        vertice[j].translada(-a,-b);
+    }
+
+    for(int j=0; j<nVertices; j++){
+        vertice[j].setXY(vertice[j].getX()*cos(angulo)-vertice[j].getY()*sin(angulo), vertice[j].getX()*sin(angulo)+vertice[j].getY()*cos(angulo));
+    }
+
+    for(int j=0; j<nVertices; j++){
+        vertice[j].translada(a,b);
+    }
+
+
 }
 
 void Poligono::imprimePol(){

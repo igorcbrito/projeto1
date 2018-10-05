@@ -3,5 +3,8 @@
 
 Retangulo::Retangulo(float x, float y, float altura, float largura){
 
-    setVetPol(int i, float x, float y);
+    setVetPol(0, x, y);
+    setVetPol(0, x+largura, y);
+    setVetPol(0, x+largura, y+altura);
+    setVetPol(0, x, y+altura);
 }

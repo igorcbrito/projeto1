@@ -1,5 +1,8 @@
 #include "ponto.h"
+#include <cmath>
+#include <iostream>
 
+using namespace std;
 
 Ponto::Ponto(float nx, float ny){
     x = nx;

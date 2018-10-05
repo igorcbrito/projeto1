@@ -13,7 +13,7 @@ class Poligono
 {
 private:
     Ponto vertice[N];
-    int nVertices;
+    int nVertices=0;
 public:
     /**
      * @brief setVertices insere vértices no Poligono
